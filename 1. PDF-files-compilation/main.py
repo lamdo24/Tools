@@ -1,32 +1,32 @@
 import PyPDF2, os, re
 
-print("\nChương trình này ghép các file PDF trong folder mà bạn nhập thành 1 file PDF duy nhất.")
-print("\nNếu bạn muốn sắp xếp các file theo thứ tự bạn chọn, hãy đặt tên file theo định dạng \"STT.ten file\" (VD: 1.abc.pdf).")
-print("Nếu không, các file sẽ được sắp xếp theo thứ tự tăng dần.\n")
+print("\nThis tool merges all the PDF files in your input directory to a single PDF file.")
+print("\nIf you would like to sort your files in order, please rename your file names as \"No.file_name\" (e.g., 1.abc.pdf).")
+print("If not, files will be sorted in the programming default order.\n")
 
-path = input("Nhập đường dẫn của folder chứa các file PDF bạn muốn ghép (VD: C:\\Users\\Desktop\\Presentations): \n")
+path = input("Input the directory path that all the PDF files contained will be merged (e.g.,: C:\\Users\\Desktop\\Presentations): \n")
 
-print("\nĐang thực hiện...")
+print("\nOn progress...")
 
-# Thay đổi \ thành \\ để bất kỳ đường dẫn nào cũng chạy được
+# Change \ to \\ so any Windows path is worked
 path.replace("\\","\\\\")
 
 os.chdir(path)
 
 Name = []
 
-# Xoá file kết quả (nếu có), mục đích là để có thể chạy nhiều lần
+# Delete the Final file (if applicable) to run multiple times
 for files in os.listdir("."):
     if files.startswith("COMPILATION.pdf"):
         os.remove(files)
 
-#Chọn các file PDF để ghép
+#Store all the PDF file names to a list
 for files in os.listdir("."):
     if files.endswith(".pdf"):
         Name.append(files)
 
-#Đếm số lượng file bắt đầu bằng số để chọn cách sắp xếp cho phù hợp. Ý tưởng là nếu tất cả các file đều bắt đầu bằng số
-#thì mới sắp xếp theo số, không thì sắp xếp theo thứ tự tăng dần
+#Count the number of files that start with a number to arrange a proper sort. The idea is that if all the file names begin with numbers, these numbers are used to 
+#sort the files. Otherwise, the programming default order is applied.
 count = 0
 
 for i in Name:
@@ -49,7 +49,6 @@ for file in fileName:
 writer.write(open("COMPILATION.pdf", "wb"))
 writer.close()
 
-print("\nĐã ghép xong các file.\nFile đã ghép nằm tại folder bạn đã nhập và tên là \"COMPILATION.pdf\".\nNhấn Enter để thoát chương trình.")
+print("\nThe task is completed.\nThe final file is in your input directory, and is \"COMPILATION.pdf\".\nPress Enter to close this tool.")
 
-input("")
-
+input("")  #To prevent closing this tool without announcement.
