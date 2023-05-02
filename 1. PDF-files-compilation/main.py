@@ -6,7 +6,7 @@ print("If not, files will be sorted in the programming default order.\n")
 
 path = input("Input the directory path that all the PDF files contained will be merged (e.g.,: C:\\Users\\Desktop\\Presentations): \n")
 
-print("\nOn progress...")
+print("\nIn progress...")
 
 # Change \ to \\ so any Windows path is worked
 path.replace("\\","\\\\")
